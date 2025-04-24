@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
-const Player = ({ initialName, symbol, isActive }) => {
+const Player = ({ initialName, symbol, isActive, onChangeName }) => {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
+
   const handleEditClick = () => {
     setIsEditing((editing) => !editing); //!isEditing 을 사용하는건 리액트에서 권장하지 않는 방법이다.
+    isEditing && onChangeName(symbol, playerName);
   };
   const handleChange = (e) => {
     setPlayerName(e.target.value);
